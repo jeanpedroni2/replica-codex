@@ -1,0 +1,10 @@
+name: Feature request
+description: Suggest a new skill or improvement
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Explain the use case, desired behavior, and alternative approaches
+    validations:
+      required: true

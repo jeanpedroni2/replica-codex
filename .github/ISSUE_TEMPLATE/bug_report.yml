@@ -1,0 +1,15 @@
+name: Bug report
+description: Report a reproducible issue in Replica Codex
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: Include steps to reproduce, expected results, and actual results
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Codex CLI/extension version, OS, and Python version
