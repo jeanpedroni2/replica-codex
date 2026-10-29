@@ -51,7 +51,7 @@ def check() -> None:
         if adapted.read_text(encoding="utf-8") != expected:
             raise ValueError(f"Codex skill out of sync: {name}")
         for f in source.rglob("*"):
-            if f.is_file() and f.name != "SKILL.md":
+            if f.is_file() and f.name != "SKILL.md" and "__pycache__" not in f.parts and f.suffix != ".pyc":
                 copy = target / f.relative_to(source)
                 if not copy.exists() or copy.read_bytes() != f.read_bytes():
                     raise ValueError(f"Missing or differing helper: {name}/{f.name}")
@@ -74,7 +74,7 @@ def prepare(force: bool = False) -> None:
         if dest.exists():
             shutil.rmtree(dest)
         dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(original, dest)
+        shutil.copytree(original, dest, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         (dest / "SKILL.md").write_text(transformed, encoding="utf-8")
         print("prepared", name)
 
